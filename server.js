@@ -56,8 +56,8 @@ db.once('open', function callback(){
 });
 
 // Add route for partials
-app.get('/partials/:partialPath', function(req, res){
-    res.render('partials/' + req.params.partialPath);
+app.get('/partials/*', function(req, res){
+    res.render('../../public/app/' + req.params[0]);
 });
 
 // Add route that delivers index page
