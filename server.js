@@ -40,7 +40,15 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/public'));
 
 // Mongoose Config
-mongoose.connect('mongodb://localhost/multivision');
+
+// use this when heroku is set up
+// mongodb://<dbuser>:<dbpassword>@ds031223.mongolab.com:31223/multivision
+if (env === 'development'){
+  mongoose.connect('mongodb://localhost/multivision');
+} else {
+  mongoose.connect('mongodb://pthompson:multivision@ds031223.mongolab.com:31223/multivision');
+}
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error ...'));
 db.once('open', function callback(){
@@ -59,6 +67,6 @@ app.get('*', function(req, res){
 });
 
 // Listen to requests
-var port = 3030;
+var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on port ' + port + '...');
