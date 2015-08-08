@@ -1,16 +1,13 @@
 var auth = require('./auth'),
-    mongoose = require('mongoose')
+    users = require('../controllers/users'),
+    mongoose = require('mongoose'),
     User = mongoose.model('User');
 
 module.exports = function(app){
     "use strict";
 
-    app.get('/api/users', auth.requiresRole('admin'), function(req, res){
-
-        User.find({}).exec(function(err, collection){
-            res.send(collection);
-        })
-    });
+    app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+    app.post('/api/users', users.createUser);
 
     // Add route for partials
     app.get('/partials/*', function(req, res){

@@ -23,5 +23,12 @@
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "stylus": "^0.52.0"
+  },
+  "devDependencies": {
+    "karma": "^0.13.8",
+    "karma-chai-plugins": "^0.6.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^2.2.5"
   }
 }
